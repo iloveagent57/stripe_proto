@@ -1,0 +1,14 @@
+[main]
+host = https://www.transifex.com
+
+[edx-platform.stripe_proto]
+file_filter = stripe_proto/conf/locale/<lang>/LC_MESSAGES/django.po
+source_file = stripe_proto/conf/locale/en/LC_MESSAGES/django.po
+source_lang = en
+type = PO
+
+[edx-platform.stripe_proto-js]
+file_filter = stripe_proto/conf/locale/<lang>/LC_MESSAGES/djangojs.po
+source_file = stripe_proto/conf/locale/en/LC_MESSAGES/djangojs.po
+source_lang = en
+type = PO

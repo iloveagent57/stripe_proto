@@ -1,0 +1,44 @@
+version: "2.1"
+services:
+  db:
+    image: mysql:5.6
+    container_name: stripe_proto.db
+    environment:
+      MYSQL_ROOT_PASSWORD: ""
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    networks:
+      - devstack_default
+    volumes:
+      - stripe_proto_mysql:/var/lib/mysql
+
+  memcache:
+    image: memcached:1.4.24
+    container_name: stripe_proto.memcache
+
+  app:
+    # Uncomment this line to use the official stripe_proto base image
+    # image: openedx/stripe_proto
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: stripe_proto.app
+    volumes:
+      - .:/edx/app/stripe_proto/
+      - ../src:/edx/src:cached
+    command: bash -c 'while true; do python /edx/app/stripe_proto/manage.py runserver 0.0.0.0:8321; sleep 2; done'
+    environment:
+      DJANGO_SETTINGS_MODULE: stripe_proto.settings.devstack
+    ports:
+      - "8321:8321" # TODO: change this to your port
+    networks:
+      - devstack_default
+    stdin_open: true
+    tty: true
+
+networks:
+  devstack_default:
+    external: true
+
+volumes:
+  stripe_proto_mysql:
