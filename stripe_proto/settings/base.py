@@ -36,6 +36,7 @@ INSTALLED_APPS = (
 THIRD_PARTY_APPS = (
     'corsheaders',
     'csrf.apps.CsrfAppConfig',  # Enables frontend apps to retrieve CSRF tokens
+    'djstripe',
     'rest_framework',
     'rest_framework_swagger',
     'social_django',

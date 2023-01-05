@@ -29,6 +29,7 @@ services:
     command: bash -c 'while true; do python /edx/app/stripe_proto/manage.py runserver 0.0.0.0:8321; sleep 2; done'
     environment:
       DJANGO_SETTINGS_MODULE: stripe_proto.settings.devstack
+      STRIPE_TEST_SECRET_KEY: ${STRIPE_TEST_SECRET_KEY}
     ports:
       - "8321:8321" # TODO: change this to your port
     networks:

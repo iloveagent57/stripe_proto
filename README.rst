@@ -39,6 +39,44 @@ One Time Setup
   # Set up a virtualenv using virtualenvwrapper with the same name as the repo and activate it
   mkvirtualenv -p python3.8 stripe_proto
 
+Setup with docker devstack
+--------------------------
+
+.. code-block::
+
+   # define the stripe test secret key, or put this in your ~/.bash_profile file
+   # this is forwarded into the app container's environment, and ultimately
+   # into the private.py settings file
+   export STRIPE_TEST_SECRET_KEY="..."
+
+   # build and start the app
+   make dev.up.build
+
+   # migrate and provision core records
+   ./provision-stripe_proto.sh
+
+Add this stuff to your ``private.py`` file.
+.. code-block::
+
+   import os
+   # https://dj-stripe.dev/dj-stripe/2.7/installation/
+   STRIPE_LIVE_SECRET_KEY = None
+   STRIPE_TEST_SECRET_KEY = os.environ.get("STRIPE_TEST_SECRET_KEY", "<your secret key>")
+   STRIPE_LIVE_MODE = False  # Change to True in production
+   DJSTRIPE_WEBHOOK_SECRET = "whsec_xxx"  # Get it from the section in the Stripe dashboard where you added the webhook endpoint
+   DJSTRIPE_USE_NATIVE_JSONFIELD = False  # doesn't work on mysql
+   DJSTRIPE_FOREIGN_KEY_TO_FIELD = "id"
+
+
+Then you'll probably need to ``make migrate`` from inside the app container again
+to get all the djstripe migrations applied.
+
+Now add the API Secret Key from the test account to http://localhost:8321/admin/djstripe/apikey/
+
+Lastly, run ``python manage.py djstripe_sync_models``.  This will sync
+every object from the Strip test account to your local database.
+Confirm this worked by visiting http://localhost:8321/admin/djstripe/product/
+there should be a record for whatever products we have defined in our test account.
 
 Every time you develop something in this repo
 ---------------------------------------------

@@ -34,6 +34,7 @@ urlpatterns = oauth2_urlpatterns + [
     re_path(r'^api-docs/', get_swagger_view(title='stripe_proto API')),
     re_path(r'^auto_auth/$', core_views.AutoAuth.as_view(), name='auto_auth'),
     re_path(r'', include('csrf.urls')),  # Include csrf urls from edx-drf-extensions
+    re_path(r'^stripe/', include('djstripe.urls', namespace='djstripe')),
     re_path(r'^health/$', core_views.health, name='health'),
 ]
 
