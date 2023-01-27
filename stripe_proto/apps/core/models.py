@@ -1,8 +1,24 @@
-""" Core models. """
+""" 
+Core models.
+ """
+from uuid import uuid4
 
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from model_utils.models import TimeStampedModel
+
+
+class TimeStampedModelWithUuid(TimeStampedModel):
+    class Meta:
+        abstract = True
+
+    uuid = models.UUIDField(
+        primary_key=True,
+        default=uuid4,
+        editable=False,
+        unique=True,
+    )
 
 
 class User(AbstractUser):

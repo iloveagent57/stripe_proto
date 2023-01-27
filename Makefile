@@ -157,6 +157,9 @@ validate_translations: fake_translations detect_changed_source_translations ## i
 docker_build:
 	docker build . -f Dockerfile -t openedx/stripe_proto
 
+dev.build-no-cache:
+	docker-compose build --no-cache
+
 # devstack-themed shortcuts
 dev.up: # Starts all containers
 	docker-compose up -d

@@ -53,6 +53,7 @@ django==3.2.16
     #   django-cors-headers
     #   django-crum
     #   django-extensions
+    #   django-model-utils
     #   djangorestframework
     #   drf-jwt
     #   edx-auth-backends
@@ -67,6 +68,8 @@ django-crum==0.7.9
     #   -r requirements/base.txt
     #   edx-django-utils
 django-extensions==3.2.1
+    # via -r requirements/base.txt
+django-model-utils==4.3.1
     # via -r requirements/base.txt
 django-rest-swagger==2.2.0
     # via -r requirements/base.txt

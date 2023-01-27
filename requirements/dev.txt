@@ -78,6 +78,7 @@ cryptography==39.0.0
     # via
     #   -r requirements/validation.txt
     #   pyjwt
+    #   secretstorage
     #   social-auth-core
 defusedxml==0.7.1
     # via
@@ -104,6 +105,7 @@ django==3.2.16
     #   django-crum
     #   django-debug-toolbar
     #   django-extensions
+    #   django-model-utils
     #   djangorestframework
     #   drf-jwt
     #   edx-auth-backends
@@ -123,6 +125,8 @@ django-debug-toolbar==3.8.1
 django-dynamic-fixture==3.1.2
     # via -r requirements/validation.txt
 django-extensions==3.2.1
+    # via -r requirements/validation.txt
+django-model-utils==4.3.1
     # via -r requirements/validation.txt
 django-rest-swagger==2.2.0
     # via -r requirements/validation.txt
@@ -208,6 +212,11 @@ jaraco-classes==3.2.3
     # via
     #   -r requirements/validation.txt
     #   keyring
+jeepney==0.8.0
+    # via
+    #   -r requirements/validation.txt
+    #   keyring
+    #   secretstorage
 jinja2==3.1.2
     # via
     #   -r requirements/validation.txt
@@ -422,6 +431,10 @@ rich==13.0.0
     # via
     #   -r requirements/validation.txt
     #   twine
+secretstorage==3.3.3
+    # via
+    #   -r requirements/validation.txt
+    #   keyring
 semantic-version==2.10.0
     # via
     #   -r requirements/validation.txt

@@ -46,6 +46,9 @@ THIRD_PARTY_APPS = (
 PROJECT_APPS = (
     'stripe_proto.apps.core',
     'stripe_proto.apps.api',
+    'stripe_proto.apps.backends',
+    'stripe_proto.apps.user_subscriptions',
+    'stripe_proto.apps.lifecycle',
 )
 
 INSTALLED_APPS += THIRD_PARTY_APPS

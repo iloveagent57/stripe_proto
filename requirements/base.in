@@ -5,6 +5,7 @@ Django         # Web application framework
 dj-stripe
 django-cors-headers
 django-extensions
+django-model-utils
 django-rest-swagger
 django-waffle
 djangorestframework
